@@ -1,5 +1,8 @@
 import { createApp, h } from 'vue'
+import { createPinia } from 'pinia'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
+
+const pinia = createPinia()
 
 createInertiaApp({
     resolve: async (name) => {
@@ -10,6 +13,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(pinia)
             .mount(el)
     },
 })
