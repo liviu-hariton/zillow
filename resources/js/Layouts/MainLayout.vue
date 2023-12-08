@@ -12,6 +12,8 @@
     <!--
     In here it will be rendered the content from the components
     that are using this layout via <MainLayout>...</MainLayout> or <main-layout>...</main-layout>
+
+    also, the content from the pages that are using this layout via: export default { layout: MainLayout }
     -->
     <slot></slot>
 </template>
