@@ -1,14 +1,19 @@
 <template>
-    <div>
+    <!--
+    The <MainLayout>...</MainLayout> is the same as <main-layout>...</main-layout>
+    -->
+    <MainLayout>
         <h1>Index</h1>
-        <p>The message is <strong>{{ message }}</strong></p>
+
+        <p>{{ message }}</p>
 
         <Link href="/hello">Show page</Link>
-    </div>
+    </MainLayout>
 </template>
 
 <script setup>
     import { Link } from '@inertiajs/inertia-vue3';
+    import MainLayout from "../../Layouts/MainLayout.vue";
 
     // 'message' is passed from the IndexController
     defineProps({
