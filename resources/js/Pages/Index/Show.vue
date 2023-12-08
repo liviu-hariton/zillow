@@ -2,7 +2,7 @@
     <div>
         <h1>Show</h1>
 
-        <Link href="/">Show page</Link>
+        <Link href="/">Index page</Link>
     </div>
 </template>
 

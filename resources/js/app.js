@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 
 // define a default layout
-import MainLayout from "./Layouts/MainLayout.vue";
+import MainLayout from "@/Layouts/MainLayout.vue";
 
 const pinia = createPinia()
 
