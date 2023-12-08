@@ -18,6 +18,10 @@
     })
 </script>
 
+<!-- The default layout is defined in app.js -->
+
+<!--
+Define the specific layout for this page
 <script>
     import MainLayout from "../../Layouts/MainLayout.vue";
 
@@ -25,3 +29,4 @@
         layout: MainLayout
     }
 </script>
+-->
