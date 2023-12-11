@@ -4,7 +4,7 @@
 
   <div>
     <!-- reactivity -->
-    <h3>The page with time {{ timer }}</h3>
+    <!-- <h3>The page with time {{ timer }}</h3> -->
 
     <!-- <button @click="timer++">Timer: {{ timer }}</button> -->
   </div>
@@ -21,12 +21,12 @@
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 
-// reactivity
+/*// reactivity
 import {ref} from 'vue'
 
 const timer = ref(0)
 // increment the timer every second with 1
 setInterval(() => {
   timer.value++
-}, 1000)
+}, 1000)*/
 </script>

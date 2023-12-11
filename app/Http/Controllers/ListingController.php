@@ -30,7 +30,14 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        /**
+         * Todo: add validation
+         */
+        Listing::create($request->all());
+
+        return redirect()
+            ->route('listing.index')
+            ->with('success', 'Listing created.');
     }
 
     /**
