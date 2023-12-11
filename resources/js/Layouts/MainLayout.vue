@@ -15,11 +15,25 @@
 
     also, the content from the pages that are using this layout via: export default { layout: MainLayout }
     -->
+
+  <!-- Display flash messages -->
+  <div v-if="flashSuccess" class="success">
+    {{ flashSuccess }}
+  </div>
+
   <slot />
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
+import {computed} from 'vue'
+import { Link, usePage } from '@inertiajs/inertia-vue3'
+
+// to access data use: page.props.value.flash.success
+// where flash.success is the data structure passed from the
+// Inertia Middleware (\App\Http\Middleware\HandleInertiaRequests@show)
+const page = usePage()
+
+const flashSuccess = computed(() => page.props.value.flash.success)
 
 /*// reactivity
 import {ref} from 'vue'
@@ -30,3 +44,9 @@ setInterval(() => {
   timer.value++
 }, 1000)*/
 </script>
+
+<style scoped>
+.success {
+  color: green;
+}
+</style>
