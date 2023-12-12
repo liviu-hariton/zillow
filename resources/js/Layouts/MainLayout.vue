@@ -1,6 +1,6 @@
 <template>
-  <Link href="/">Index page</Link> |
-  <Link href="/hello">Show page</Link>
+  <Link href="/listing">Listings</Link> |
+  <Link href="/listing/create">New lilsting</Link>
 
   <div>
     <!-- reactivity -->
