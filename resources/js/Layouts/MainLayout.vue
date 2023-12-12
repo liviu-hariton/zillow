@@ -1,6 +1,6 @@
 <template>
-  <Link href="/listing">Listings</Link> |
-  <Link href="/listing/create">New lilsting</Link>
+  <Link :href="route('listing.index')">Listings</Link> |
+  <Link :href="route('listing.create')">New lilsting</Link>
 
   <div>
     <!-- reactivity -->
