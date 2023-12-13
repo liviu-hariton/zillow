@@ -16,20 +16,15 @@ class UserAccountController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request and initiate the user model
-        $user = User::make(
+        // Validate the request and create the user
+        // The password is hashed automatically by the User model password() mutator
+        $user = User::create(
             $request->validate([
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:8|confirmed',
             ])
         );
-
-        // Hash the password
-        $user->password = Hash::make($request->password);
-
-        // Save the user into the database
-        $user->save();
 
         // Log the user in
         Auth::login($user);
