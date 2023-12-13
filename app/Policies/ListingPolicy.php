@@ -8,6 +8,22 @@ use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
+    // This method is called before any other methods
+    // and can be used to allow admins to do anything
+    // or to allow admins to perform the specified ability
+    public function before(?User $user, $ability)
+    {
+        // Allow admins to do anything
+        if($user->is_admin) {
+            return true;
+        }
+
+        // Allow admins to perform the specified ability (delete in this case
+        /*if($user->is_admin && $ability === 'delete') {
+            return true;
+        }*/
+    }
+
     /**
      * Determine whether the user can view any models.
      */
