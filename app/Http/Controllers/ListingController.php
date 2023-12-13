@@ -40,7 +40,8 @@ class ListingController extends Controller
         /**
          * Todo: add validation
          */
-        Listing::create(
+        // Create a new listing and associate it with the authenticated user
+        $request->user()->listings()->create(
             $request->validate([
                 'beds' => 'required|integer|min:0|max:20',
                 'baths' => 'required|integer|min:0|max:20',
