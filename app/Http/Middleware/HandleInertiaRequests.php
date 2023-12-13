@@ -40,7 +40,13 @@ class HandleInertiaRequests extends Middleware
             // share flash messages with all components
             'flash' => [
                 'success' => $request->session()->get('success')
-            ]
+            ],
+            // share auth user with all components
+            'user' => $request->user() ? [
+                'id' => $request->user()->id,
+                'name' => $request->user()->name,
+                'email' => $request->user()->email,
+            ] : null,
         ]);
     }
 }
