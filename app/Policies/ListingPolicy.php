@@ -14,7 +14,8 @@ class ListingPolicy
     public function before(?User $user, $ability)
     {
         // Allow admins to do anything
-        if($user->is_admin) {
+        // if user is null, no error will be thrown (null safe operator "?->" is used)
+        if($user?->is_admin) {
             return true;
         }
 
