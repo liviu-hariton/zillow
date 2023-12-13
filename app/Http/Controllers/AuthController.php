@@ -34,8 +34,13 @@ class AuthController extends Controller
     }
 
     // Process sign-out
-    public function destroy()
+    public function destroy(Request $request)
     {
+        Auth::logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
