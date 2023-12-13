@@ -11,7 +11,9 @@ class ListingPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    // ? means that the user can be null
+    // (aka not logged in aka guest)
+    public function viewAny(?User $user): bool
     {
         return true;
     }
@@ -19,7 +21,9 @@ class ListingPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Listing $listing): bool
+    // ? means that the user can be null
+    // (aka not logged in aka guest)
+    public function view(?User $user, Listing $listing): bool
     {
         return true;
     }
