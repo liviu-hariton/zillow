@@ -41,7 +41,8 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing): bool
     {
-        return true;
+        // Only allow the user who created the listing to update it
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -49,7 +50,8 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing): bool
     {
-        return true;
+        // Only allow the user who created the listing to soft-delete it
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -57,7 +59,8 @@ class ListingPolicy
      */
     public function restore(User $user, Listing $listing): bool
     {
-        return true;
+        // Only allow the user who created the listing to restore it
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -65,6 +68,7 @@ class ListingPolicy
      */
     public function forceDelete(User $user, Listing $listing): bool
     {
-        return true;
+        // Only allow the user who created the listing to delete it
+        return $user->id === $listing->by_user_id;
     }
 }
