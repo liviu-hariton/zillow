@@ -33,5 +33,9 @@ Route::prefix('realtor')
     ->name('realtor.')
     ->middleware('auth')
     ->group(function() {
-        Route::resource('listing', RealtorListingController::class);
+        Route::name('listing.restore')
+            ->put('listing/{listing}/restore', [RealtorListingController::class, 'restore'])
+            ->withTrashed();
+
+        Route::resource('listing', RealtorListingController::class)->withTrashed();
     });
