@@ -23,6 +23,11 @@ class Listing extends Model
         'price'
     ];
 
+    // fields that should allow sorting
+    protected $sortable = [
+        'created_at', 'price'
+    ];
+
     public function owner(): BelongsTo
     {
         // the second argument is the name of the foreign key column
@@ -61,6 +66,11 @@ class Listing extends Model
         )->when(
             $filters['deleted'] ?? false,
             fn ($query, $value) => $query->withTrashed()
+        )->when(
+            $filters['by'] ?? false,
+            // check if the sorting field (stored in $value) is in the $sortable array
+            // if not, don't sort by it
+            fn ($query, $value) => !in_array($value, $this->sortable) ? $query : $query->orderBy($value, $filters['order'] ?? 'desc')
         );
     }
 }
