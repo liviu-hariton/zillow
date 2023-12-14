@@ -21,10 +21,18 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return inertia('Listing/Index', [
-            'listings' => Listing::orderByDesc('created_at')->paginate(10),
+            // pass the filters GET parameters to the view
+            'filters' => $request->only([
+                'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
+            ]),
+            'listings' => Listing::orderByDesc('created_at')
+                ->paginate(10)
+                // append the GET parameters to the pagination links
+                // it will append only the parameters that have a value
+                ->withQueryString(),
         ]);
     }
 
