@@ -33,9 +33,75 @@ class RealtorListingController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return inertia('Realtor/Create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        /**
+         * Todo: add validation
+         */
+        // Create a new listing and associate it with the authenticated user
+        $request->user()->listings()->create(
+            $request->validate([
+                'beds' => 'required|integer|min:0|max:20',
+                'baths' => 'required|integer|min:0|max:20',
+                'area' => 'required|integer|min:15|max:1500',
+                'city' => 'required|string',
+                'code' => 'required|string',
+                'street' => 'required|string',
+                'street_nr' => 'required|min:1|max:1000',
+                'price' => 'required|integer|min:1|max:20000000',
+            ])
+        );
+
+        return redirect()
+            ->route('realtor.listing.index')
+            ->with('success', 'Listing created.');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Listing $listing)
     {
+        return inertia('Realtor/Edit', [
+            'listing' => $listing,
+        ]);
+    }
 
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Listing $listing)
+    {
+        /**
+         * Todo: add validation
+         */
+        $listing->update(
+            $request->validate([
+                'beds' => 'required|integer|min:0|max:20',
+                'baths' => 'required|integer|min:0|max:20',
+                'area' => 'required|integer|min:15|max:1500',
+                'city' => 'required|string',
+                'code' => 'required|string',
+                'street' => 'required|string',
+                'street_nr' => 'required|min:1|max:1000',
+                'price' => 'required|integer|min:1|max:20000000',
+            ])
+        );
+
+        return redirect()
+            ->route('realtor.listing.index')
+            ->with('success', 'Listing updated.');
     }
 
     /**
@@ -46,7 +112,7 @@ class RealtorListingController extends Controller
         $listing->deleteOrFail();
 
         return redirect()
-            ->back()
+            ->route('realtor.listing.index')
             ->with('success', 'Listing deleted.');
     }
 }
