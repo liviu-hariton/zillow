@@ -23,13 +23,42 @@ class ListingController extends Controller
      */
     public function index(Request $request)
     {
+        $filters = $request->only([
+            'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
+        ]);
+
+        $query = Listing::orderByDesc('created_at');
+
+        // use ?? ( Null coalescing operator ) to check if the value is set,
+        // if not use the default value (false)
+        if($filters['priceFrom'] ?? false) {
+            $query->where('price', '>=', $filters['priceFrom']);
+        }
+
+        if ($filters['priceTo'] ?? false) {
+            $query->where('price', '<=', $filters['priceTo']);
+        }
+
+        if ($filters['beds'] ?? false) {
+            $query->where('beds', $filters['beds']);
+        }
+
+        if ($filters['baths'] ?? false) {
+            $query->where('baths', $filters['baths']);
+        }
+
+        if ($filters['areaFrom'] ?? false) {
+            $query->where('area', '>=', $filters['areaFrom']);
+        }
+
+        if ($filters['areaTo'] ?? false) {
+            $query->where('area', '<=', $filters['areaTo']);
+        }
+
         return inertia('Listing/Index', [
             // pass the filters GET parameters to the view
-            'filters' => $request->only([
-                'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
-            ]),
-            'listings' => Listing::orderByDesc('created_at')
-                ->paginate(10)
+            'filters' => $filters,
+            'listings' => $query->paginate(10)
                 // append the GET parameters to the pagination links
                 // it will append only the parameters that have a value
                 ->withQueryString(),
