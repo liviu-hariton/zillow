@@ -22,11 +22,13 @@ const filterForm = reactive({
   deleted: false,
 })
 
-// reactive / ref / computed
+// The filterForm object is continuously observed, and whenever it changes,
+// a new GET request is made to the server with the updated filter parameters
 watch(
-  filterForm, () => router.get(
-    route('realtor.listing.index'),
-    filterForm,
+  filterForm, // The object to be observed
+  () => router.get(
+    route('realtor.listing.index'), // The route to be navigated to
+    filterForm, // The data to be sent along with the request
     {
       reserveState: true,
       preserveScroll: true,
