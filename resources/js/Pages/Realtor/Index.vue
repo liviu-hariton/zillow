@@ -14,8 +14,8 @@
         </div>
         <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
           <Link class="btn-outline text-xs font-medium" :href="route('listing.show', listing)">Preview</Link>
-          <Link class="btn-outline text-xs font-medium" :href="route('listing.edit', listing)">Edit</Link>
-          <Link class="btn-outline text-xs font-medium" :href="route('listing.destroy', listing)" method="delete" as="button">Delete</Link>
+          <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', listing)">Edit</Link>
+          <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy', listing)" method="delete" as="button">Delete</Link>
         </div>
       </div>
     </Box>
