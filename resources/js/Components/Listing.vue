@@ -20,13 +20,6 @@
         />
       </Link>
     </div>
-    <div>
-      <Link
-        :href="route('listing.edit', {listing: listing})"
-      >
-        Edit
-      </Link>
-    </div>
   </Box>
 </template>
 
