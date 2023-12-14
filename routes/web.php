@@ -33,6 +33,7 @@ Route::prefix('realtor')
     ->name('realtor.')
     ->middleware('auth')
     ->group(function() {
+        // specific route for restoring a soft deleted listing
         Route::name('listing.restore')
             ->put('listing/{listing}/restore', [RealtorListingController::class, 'restore'])
             ->withTrashed();
