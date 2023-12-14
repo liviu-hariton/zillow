@@ -112,7 +112,7 @@ class RealtorListingController extends Controller
         $listing->deleteOrFail();
 
         return redirect()
-            ->route('realtor.listing.index')
+            ->back()
             ->with('success', 'Listing deleted.');
     }
 
@@ -120,6 +120,6 @@ class RealtorListingController extends Controller
     {
         $listing->restore();
 
-        return redirect()->back()->with('success', 'Listing was restored!');
+        return redirect()->back()->with('success', 'Listing restored!');
     }
 }
