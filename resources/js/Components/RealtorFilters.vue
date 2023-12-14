@@ -17,6 +17,7 @@
 <script setup>
 import { reactive, watch } from 'vue'
 import { router } from '@inertiajs/vue3'
+import { debounce } from 'lodash'
 
 const filterForm = reactive({
   deleted: false,
@@ -26,13 +27,15 @@ const filterForm = reactive({
 // a new GET request is made to the server with the updated filter parameters
 watch(
   filterForm, // The object to be observed
-  () => router.get(
-    route('realtor.listing.index'), // The route to be navigated to
-    filterForm, // The data to be sent along with the request
-    {
-      reserveState: true,
-      preserveScroll: true,
-    },
+  debounce(
+    () => router.get(
+      route('realtor.listing.index'), // The route to be navigated to
+      filterForm, // The data to be sent along with the request
+      {
+        reserveState: true,
+        preserveScroll: true,
+      },
+    ), 1000,
   ),
 )
 </script>
