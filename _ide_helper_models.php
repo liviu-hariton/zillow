@@ -28,6 +28,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $owner
  * @method static \Database\Factories\ListingFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing filters(array $filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing mostRecent()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing query()

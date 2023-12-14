@@ -27,32 +27,12 @@ class ListingController extends Controller
             'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
         ]);
 
-        $query = Listing::orderByDesc('created_at')
-            // conditional build query
-            ->when(
-                $filters['priceFrom'] ?? false,
-                // $value is the result of the above parameter
-                fn ($query, $value) => $query->where('price', '>=', $value)
-            )->when(
-                $filters['priceTo'] ?? false,
-                fn ($query, $value) => $query->where('price', '<=', $value)
-            )->when(
-                $filters['beds'] ?? false,
-                fn ($query, $value) => $query->where('beds', (int)$value < 6 ? '=' : '>=', $value)
-            )->when(
-                $filters['baths'] ?? false,
-                fn ($query, $value) => $query->where('baths', (int)$value < 6 ? '=' : '>=', $value)
-            )->when(
-                $filters['areaFrom'] ?? false,
-                fn ($query, $value) => $query->where('area', '>=', $value)
-            )->when(
-                $filters['areaTo'] ?? false,
-                fn ($query, $value) => $query->where('area', '<=', $value));
-
         return inertia('Listing/Index', [
             // pass the filters GET parameters to the view
             'filters' => $filters,
-            'listings' => $query->paginate(10)
+            'listings' => Listing::mostRecent() // defined as a scope in the Listing model
+                ->filters($filters) // defined as a scope in the Listing model
+                ->paginate(10)
                 // append the GET parameters to the pagination links
                 // it will append only the parameters that have a value
                 ->withQueryString(),
