@@ -16,29 +16,36 @@
 
           <ListingAddress :listing="listing" />
         </div>
-        <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
-          <Link class="btn-outline text-xs font-medium" :href="route('listing.show', listing)">Preview</Link>
-          <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', listing)">Edit</Link>
-          <Link
-            v-if="!listing.deleted_at"
-            class="btn-outline text-xs font-medium"
-            :href="route('realtor.listing.destroy', listing)"
-            method="delete"
-            as="button"
-          >
-            Delete
-          </Link>
 
-          <Link
-            v-else
-            class="btn-outline text-xs font-medium"
-            :href="route('realtor.listing.restore', listing)"
-            as="button"
-            method="put"
-          >
-            Restore
-          </Link>
-        </div>
+        <section>
+          <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
+            <Link class="btn-outline text-xs font-medium" :href="route('listing.show', listing)">Preview</Link>
+            <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.edit', listing)">Edit</Link>
+            <Link
+              v-if="!listing.deleted_at"
+              class="btn-outline text-xs font-medium"
+              :href="route('realtor.listing.destroy', listing)"
+              method="delete"
+              as="button"
+            >
+              Delete
+            </Link>
+
+            <Link
+              v-else
+              class="btn-outline text-xs font-medium"
+              :href="route('realtor.listing.restore', listing)"
+              as="button"
+              method="put"
+            >
+              Restore
+            </Link>
+          </div>
+
+          <div class="mt-2">
+            <Link :href="route('realtor.listing.image.create', listing)" class="block w-full btn-outline text-xs font-medium text-center">Images</Link>
+          </div>
+        </section>
       </div>
     </Box>
   </section>
