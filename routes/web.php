@@ -28,7 +28,8 @@ Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::delete('/logout', [AuthController::class, 'destroy'])->name('logout');
 
-Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
+Route::resource('user-account', UserAccountController::class)
+    ->only(['create', 'store']); // enable / generate only this routes
 
 Route::prefix('realtor')
     ->name('realtor.')

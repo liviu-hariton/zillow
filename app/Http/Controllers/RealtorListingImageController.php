@@ -10,6 +10,9 @@ class RealtorListingImageController extends Controller
 {
     public function create(Listing $listing)
     {
+        // eager load the images relationship
+        $listing->load(['images']);
+
         return inertia('Realtor/ListingImage/Create', [
             'listing' => $listing
         ]);
