@@ -52,6 +52,8 @@ class ListingController extends Controller
         // Method 2 for using Policies: use the ListingPolicy
         /*$this->authorize('view', $listing);*/
 
+        $listing->load(['images']);
+
         return inertia('Listing/Show', [
             'listing' => $listing,
         ]);
