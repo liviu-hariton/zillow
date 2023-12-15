@@ -4,22 +4,31 @@
     <form
       @submit.prevent="upload"
     >
-      <input
-        type="file"
-        multiple @input="addFiles"
-      />
-      <button type="submit" class="btn-outline">Upload</button>
-      <button
-        type="reset" class="btn-outline"
-        @click="reset"
-      >
-        Reset
-      </button>
+      <section class="flex items-center gap-2 my-4">
+        <input
+          class="input-file"
+          type="file" multiple @input="addFiles"
+        />
+        <button
+          type="submit"
+          class="btn-upload"
+          :disabled="!canUpload"
+        >
+          Upload
+        </button>
+        <button
+          type="reset" class="btn-outline"
+          @click="reset"
+        >
+          Reset
+        </button>
+      </section>
     </form>
   </Box>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import Box from '@/Components/UI/Box.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 
@@ -29,6 +38,8 @@ const props = defineProps({ listing: Object })
 const form = useForm({
   images: [],
 })
+
+const canUpload = computed(() => form.images.length)
 
 // actually upload images
 const upload = () => {
