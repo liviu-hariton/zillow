@@ -41,5 +41,7 @@ Route::prefix('realtor')
             ->withTrashed();
 
         Route::resource('listing', RealtorListingController::class)->withTrashed();
-        Route::resource('listing.image', RealtorListingImageController::class)->only(['create', 'store']);
+
+        Route::resource('listing.image', RealtorListingImageController::class)
+            ->only(['create', 'store', 'destroy']); // enable / generate only this routes
     });

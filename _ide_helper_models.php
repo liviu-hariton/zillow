@@ -27,6 +27,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ListingImage> $images
+ * @property-read int|null $images_count
  * @property-read \App\Models\User $owner
  * @method static \Database\Factories\ListingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Listing filters(array $filters)
@@ -52,6 +54,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing withoutTrashed()
  */
 	class Listing extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ListingImage
+ *
+ * @property int $id
+ * @property int $listing_id
+ * @property string $filename
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read string $src
+ * @property-read \App\Models\Listing $listing
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage whereFilename($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ListingImage whereUpdatedAt($value)
+ */
+	class ListingImage extends \Eloquent {}
 }
 
 namespace App\Models{
