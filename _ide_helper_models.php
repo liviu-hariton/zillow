@@ -29,6 +29,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ListingImage> $images
  * @property-read int|null $images_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Offer> $offers
+ * @property-read int|null $offers_count
  * @property-read \App\Models\User $owner
  * @method static \Database\Factories\ListingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Listing filters(array $filters)
@@ -81,6 +83,35 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Offer
+ *
+ * @property int $id
+ * @property int $listing_id
+ * @property int $bidder_id
+ * @property int $amount
+ * @property string|null $accepted_at
+ * @property string|null $rejected_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $bidder
+ * @property-read \App\Models\Listing $listing
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereAcceptedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereBidderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereRejectedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer whereUpdatedAt($value)
+ */
+	class Offer extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -96,6 +127,8 @@ namespace App\Models{
  * @property-read int|null $listings_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Offer> $offers
+ * @property-read int|null $offers_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])

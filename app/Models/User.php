@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Listing::class, 'by_user_id');
     }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'bidder_id');
+    }
 }

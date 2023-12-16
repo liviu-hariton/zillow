@@ -67,6 +67,14 @@
           </div>
         </div>
       </Box>
+
+      <MakeOffer
+        v-if="user"
+        :listing-id="listing.id"
+        :price="listing.price"
+        @offer-updated="offer = $event"
+      />
+      <Box v-else>You need to be logged in to place on offer for this listing</Box>
     </div>
   </div>
 </template>
@@ -76,9 +84,11 @@ import ListingAddress from '@/Components/ListingAddress.vue'
 import Price from '@/Components/Price.vue'
 import ListingSpace from '@/Components/ListingSpace.vue'
 import Box from '@/Components/UI/Box.vue'
+import MakeOffer from '@/Components/MakeOffer.vue'
 
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useMonthlyPayment } from '@/Composables/useMonthlyPayment'
+import { usePage } from '@inertiajs/inertia-vue3'
 
 const interestRate = ref(2.5)
 const duration = ref(25)
@@ -90,7 +100,13 @@ const props = defineProps({
   },
 })
 
+const offer = ref(props.listing.price)
+
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
-  props.listing.price, interestRate, duration,
+  offer, interestRate, duration,
 )
+
+const page = usePage()
+
+const user = computed(() => page.props.value.user)
 </script>

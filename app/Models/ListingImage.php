@@ -12,7 +12,7 @@ class ListingImage extends Model
     // fields that should be appended to the model
     // this is useful when you want to add attributes to the model that are not in the database
     // in this case, we want to add the src attribute to the model
-    // the 'src' is constructed in the get[Src]Attribute() method with kebab_case
+    // the 'src' is constructed in the get[Src]Attribute() method with kebab-case
     protected $appends = ['src'];
 
     public function listing(): BelongsTo
