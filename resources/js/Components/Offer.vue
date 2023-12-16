@@ -6,7 +6,7 @@
         v-if="offer.accepted_at"
         class="dark:bg-green-900 dark:text-green-200 bg-green-200 text-green-900 p-1 rounded-md uppercase ml-1"
       >
-        accepeted
+        accepted
       </span>
     </template>
 
