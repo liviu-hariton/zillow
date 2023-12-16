@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,8 @@ class UserAccountController extends Controller
 
         // Log the user in
         Auth::login($user);
+
+        event(new Registered($user));
 
         // Redirect the user back to the listing page with a success message
         return redirect()->route('listing.index')->with('success', 'User created successfully.');
