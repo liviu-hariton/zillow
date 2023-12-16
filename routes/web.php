@@ -25,8 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('home');
-Route::get('/hello', [IndexController::class, 'show'])->name('hello');
+Route::get('/', function () {
+    return redirect()->route('listing.index');
+});
 
 Route::resource('listing', ListingController::class);
 Route::resource('listing.offer', ListingOfferController::class)
