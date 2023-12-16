@@ -10,18 +10,22 @@ class RealtorListingAcceptOfferController extends Controller
 {
     public function __invoke(Offer $offer)
     {
+        $listing = $offer->listing;
+
+        $this->authorize('update', $listing);
+
         $offer->update([
             'accepted_at' => now(),
         ]);
 
-        $offer->listing->sold_at = now();
-        $offer->listing->save();
+        $listing->sold_at = now();
+        $listing->save();
 
-        $offer->listing->offers()->except($offer)
+        $listing->offers()->except($offer)
             ->update(['rejected_at' => now()]);
 
         return redirect()
-            ->route('realtor.listing.show', $offer->listing)
+            ->route('realtor.listing.show', $listing)
             ->with('success', 'Offer #'.$offer->id.' accepted, all other offers rejected');
     }
 }
