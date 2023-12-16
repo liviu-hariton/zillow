@@ -24,6 +24,7 @@ namespace App\Models{
  * @property string $street
  * @property string $street_nr
  * @property int $price
+ * @property string|null $sold_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -49,10 +50,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing whereSoldAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereStreetNr($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing withoutSold()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing withoutTrashed()
  */
 	class Listing extends \Eloquent {}
@@ -96,6 +99,7 @@ namespace App\Models{
  * @property-read \App\Models\User $bidder
  * @property-read \App\Models\Listing $listing
  * @method static \Illuminate\Database\Eloquent\Builder|Offer byMe()
+ * @method static \Illuminate\Database\Eloquent\Builder|Offer except(\App\Models\Offer $offer)
  * @method static \Illuminate\Database\Eloquent\Builder|Offer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Offer newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Offer query()

@@ -32,6 +32,7 @@ class ListingController extends Controller
             'filters' => $filters,
             'listings' => Listing::mostRecent() // defined as a scope in the Listing model
                 ->filters($filters) // defined as a scope in the Listing model
+                ->withoutSold() // defined as a scope in the Listing model
                 ->paginate(10)
                 // append the GET parameters to the pagination links
                 // it will append only the parameters that have a value
