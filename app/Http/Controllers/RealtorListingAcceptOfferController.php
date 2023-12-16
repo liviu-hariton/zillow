@@ -14,14 +14,11 @@ class RealtorListingAcceptOfferController extends Controller
             'accepted_at' => now(),
         ]);
 
-        $offer->listing->offers()
-            ->except($offer)
-            ->update([
-                'rejected_at' => now(),
-            ]);
+        $offer->listing->offers()->except($offer)
+            ->update(['rejected_at' => now()]);
 
         return redirect()
             ->route('realtor.listing.show', $offer->listing)
-            ->with('success', 'Offer accepted!');
+            ->with('success', 'Offer #'.$offer->id.' accepted, all other offers rejected');
     }
 }
